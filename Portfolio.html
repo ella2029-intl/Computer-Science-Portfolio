@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Computer Science – Semester One | Assignments</title>
+
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3e8ff;
+  color: #2d1b3d;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #7c3aed;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+header h2 {
+  margin: 5px 0 0 0;
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+.box {
+  background-color: white;
+  width: 260px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-top: 8px solid #a855f7;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.3);
+  text-align: left;
+}
+
+.box h2 {
+  color: #7c3aed;
+  margin-top: 0;
+}
+
+.modal-button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 0;
+  background-color: #7c3aed;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+}
+
+.modal-button:hover {
+  background-color: #9333ea;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  text-align: left;
+  overflow: auto; /* allow scrolling for long content */
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-content pre {
+  margin-top: 10px;
+  font-weight: normal;
+  color: black; /* Code/prompt text in black */
+  font-size: 1em;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding: 10px;
+  background-color: #f3e8ff;
+  border-radius: 8px;
+}
+
+.modal-content .caption {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #7c3aed; /* image captions in purple */
+  font-size: 1.2em;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+footer {
+  background-color: #2d1b3d;
+  color: #d8b4fe;
+  text-align: center;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Computer Science – Semester One</h1>
+  <h2>Ella Holbrook</h2>
+</header>
+
+<main>
+  <!-- Python Turtle Art -->
+  <div class="box">
+    <h2>Python Turtle Art</h2>
+    <p>For my assignment I made a stop light. It had 2 different types of input variables--the color of the lights and the height of the post--and 2 uses of loops.</p>
+    <button class="modal-button" onclick="openModal('https://i.postimg.cc/rFGZkXQW/Screenshot-2026-01-15-at-1-50-00-PM.png','Python Turtle Art Image')">Image</button>
+    <button class="modal-button" onclick="openCodeModal('Python Turtle Art Code', pythonTurtleCode)">Python Turtle Code</button>
+  </div>
+
+  <!-- AI Escape Game -->
+  <div class="box">
+    <h2>AI Escape Game</h2>
+    <p>For my AI game I created a scenario where the player must complete a series of puzzle games in order to escape the speeding train you and other passengers are stuck on.</p>
+    <button class="modal-button" onclick="openPrompt('AI Escape Game Prompt', aiEscapePrompt)">AI Escape Game Prompt</button>
+    <button class="modal-button" onclick="openPrompt('AI Escape Game Instructions','Copy this Escape Game prompt into ChatGPT or Gemini to play it. Do not read the prompt to avoid spoilers.')">AI Escape Game Instructions</button>
+  </div>
+
+  <!-- Recipe Website -->
+  <div class="box">
+    <h2>Recipe Website</h2>
+    <p>For my website I made a recipe for homemade peanut butter and oat dog treats. It includes ingredients, materials, and instructions with a brown background and an image.</p>
+    <button class="modal-button" onclick="openModal('https://i.postimg.cc/ZKc8KT3X/Screenshot-2026-01-15-at-2-26-45-PM.png','Recipe Website Image')">Image</button>
+    <button class="modal-button" onclick="openCodeModal('Recipe Website Code', recipeWebsiteCode)">Recipe Website Code</button>
+  </div>
+
+  <!-- Dear Data Postcard -->
+  <div class="box">
+    <h2>Dear Data Postcard</h2>
+    <p>I tracked my interactions with my dogs over the course of the week to see how much time I spend with them.</p>
+    <button class="modal-button" onclick="openPrompt('Dear Data Postcard Prompt','Tracked interactions with my dogs over a week to analyze time spent together.')">Prompt</button>
+  </div>
+</main>
+
+<footer>
+  © 2026 — Ella Holbrook — All rights reserved
+</footer>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="Project Image" style="display:none;">
+    <pre id="modalText"></pre>
+    <div class="caption" id="modalCaption" style="display:none;"></div>
+  </div>
+</div>
+
+<script>
+// Python Turtle code
+const pythonTurtleCode = `import turtle
+
+u = turtle.Turtle()
+u.shape('turtle')
+
+screen = turtle.Screen()
+
+number = screen.textinput("Height of Light", "How tall do you want the stop-light?")
+color1 = screen.textinput("Color of Circle", "What color do you want the first circle?")
+color2 = screen.textinput("Color of Circle", "What color do you want the second circle?")
+color3 = screen.textinput("Color of Circle", "What color do you want the third circle?")
+number = int(number)
+
+u.penup()
+u.goto(-50,100)
+u.width(3)
+u.pendown()
+
+u.begin_fill()
+u.left(90)
+for i in range(2):
+    u.circle(60,180)
+    u.forward(290)
+u.end_fill()
+
+u.penup()
+u.goto(-60,80)
+u.pendown()
+
+u.begin_fill()
+u.color(color1)
+u.circle(50)
+u.end_fill()
+u.penup()
+u.right(180)
+u.forward(75)
+u.right(90)
+u.forward(50)
+u.pendown()
+u.begin_fill()
+u.color(color2)
+u.circle(50)
+u.end_fill()
+u.penup()
+u.right(270)
+u.forward(125)
+u.right(90)
+u.pendown()
+u.begin_fill()
+u.color(color3)
+u.circle(50)
+u.end_fill()
+u.penup()
+
+u.goto(-110,155)
+u.color('black')
+u.width(10)
+u.pendown()
+u.left(90)
+u.backward(20)
+u.penup()
+u.goto(-110,-250)
+u.width(25)
+for i in range(number):
+    u.pendown()
+    u.forward(10)
+    u.penup()
+    u.forward(20)
+
+turtle.done()`;
+
+// Recipe Website HTML
+const recipeWebsiteCode = `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Dog Treats</h1>
+    <h2>Healthy Homemade Bites For Your Furry Friends</h2>
+    <h2 class="desc">Peanut Butter And Oat Recipe</h2>
+    <p>Prep Time: 10 minutes</p>
+    <p>Cook Time: 15 minutes</p>
+    <p>Total Time: 25 minutes</p>
+    <p>Servings: About 20 treats</p>
+    <section class="layout">
+      <div class="box">
+        <p class="exp">Our homemade dog treats are inexpensive and completely organic. A simply made recipe thats easy to follow and quick to make and are completely dog-approved.</p>
+      </div>
+      <div>
+        <img src="https://southern-bytes.com/wp-content/uploads/2020/03/pb-treats-1.jpg" width="300">
+      </div>
+    </section>
+    <h3>Ingredients</h3>
+      <ul>
+        <li>1 cup Rolled Oats</li>
+        <li>½ cup peanut butter (make sure it does not contain xylitol)</li>
+        <li>1 ripe banana, mashed</li>
+        <li>1 egg (optional, for a firmer texture)</li>
+        <li>1 cup Rolled Oats</li>
+        <li>½ cup peanut butter (make sure it does not contain xylitol)</li>
+        <li>1 ripe banana, mashed</li>
+        <li>1 egg (optional, for a firmer texture)</li>
+      </ul>
+    <h3>Materials</h3>
+     <ul>
+      <li>Mixing bowl</li>
+      <li>Spoon or spatula</li>
+      <li>Fork or potato masher (for banana)</li>
+      <li>Measuring cups</li>
+      <li>Baking sheet</li>
+      <li>Parchment paper</li>
+      <li>Cooling rack</li>
+     </ul>
+    <h3>Instructions</h3>
+     <ol>
+      <li>Preheat oven to 350°F (175°C)</li>
+      <li>Line a baking sheet with parchment paper</li>
+      <li>In the mixing bowl, mash the banana until smooth</li>
+      <li>Add the peanut butter and stir till combined</li>
+      <li>Mix in the oats (and egg if using) until dough forms</li>
+      <li>Roll dough into small balls and flatten with fork to make biscuits</li>
+      <li>Arrange the treats on the pre-prepared baking sheet</li>
+      <li>Bake for 12 to 15 minutes, or until lightly golden</li>
+      <li>Cool completely on cooling rack before giving to your pup</li>
+     </ol> 
+     <h4>© 2025 Ella Holbrook | All Rights Reserved</h4>
+  </body>
+</html>`;
+
+// AI Escape Game Prompt
+const aiEscapePrompt = `You are the Game Master of The educational escape room titled: Puzzle Train
+
+Theme: Stop a train using puzzles
+Learning Goal: Figure out how to solve different kinds of puzzles
+
+Your task:
+Start by explaining the scenario in detail to the player then create the puzzles.
+*REMEMBER* In all responses, respond only as a game master describing a text-based escape room role-playing game scenario.
+
+Scenario: 
+You are on a high-speed train nearing your destination when you realize the train hasn't slowed down, as it gets closer it still hasn’t stopped. You pass by your destination still at high speed when you hear an emergency announcement “The brakes have malfunctioned, the train cannot stop.” You and others begin to panic when someone says they found the control room. You rush over and burst into the room finding yourself in front of a ton of blinking lights on the control panel. Only to see that the manual brakes are locked and need an override code to activate it to stop the train. You find that the only way to override is to solve a series of puzzles to receive the password. The first puzzle appears on the control panel’s screen.
+
+Puzzle #1 description: 
+You will create at least three rebus puzzles (Word-picture puzzles or visual wordplay you solve from a written clue (e.g., “MANBOARD” = "Man overboard")) for the player to solve and tell them the goal and how to do it. The player gets three tries to guess the word/phrase, if they don’t they do not get a solve. The player needs three solves to move on. If they get the wrong answer for one puzzle you will add on an additional one after until they get three right.
+After the player completes the entirety of this puzzle they get a check mark and introduce the next puzzle.
+For the player to get a hint they must beat you in a one round game of Tic-Tac-Toe.
+
+Puzzle #2 description:
+You will create a 6x6 sudoku grid. (You fill in the missing numbers without repeating any in rows, columns, or boxes.) for the player to solve and explain the goal and how to achieve it. The player will try to solve it and send the result, you will check it to see if it's right, if it is they move to the next puzzle, if not you tell them it's wrong but NOT give the answers. The player will then try again.
+After the player completes the entirety of this puzzle they get a check mark and introduce the next puzzle.
+For the player to get a hint they must beat you in a one round game of Tic-Tac-Toe.
+
+Puzzle #3 description:
+You will create a 3x3 Sumplete grid (cross out numbers so that the remaining numbers in each row and column add up to the target sums.) for the player to solve, explain the goal and how to achieve it. The player will try to solve it and send the result, you will check it to see if it's right, if it is they move to the next puzzle, if not you tell them it's wrong but NOT give the answers. The player will then try again.
+After the player completes the entirety of this puzzle they get a check mark and introduce the next puzzle.
+For the player to get a hint they must beat you in a one round game of Tic-Tac-Toe.
+
+Puzzle #4 description:
+You will create a 5 letter word ladder ((Start with one word (e.g., "cold") and change one letter at a time to reach a target word (e.g., "warm")) with words following the theme of transport and accidents. Explain the goal and how to achieve it. The player will try to solve it and send the result, you will check it to see if it's right, if it is they move to the next puzzle, if not you tell them it's wrong and at what word it went wrong but NOT what the correct answer is. The player will then try again. 
+After the player completes the entirety of the puzzle they get a check mark and the end scenario.
+For the player to get a hint they must beat you in a one round game of Tic-Tac-Toe.
+
+End Scenario (to be shown after all 4 puzzles are complete):
+The screen on the control panel turns green with a check mark to then reveal the override code. You type in the code to the manual brake system and press the stop button, the train starts slowing to a stop with a screech before coming to a complete stop. You hear sighs and cheers all around. You did it. *Congratulate the player*
+
+Rules / Guardrails:
+Player MUST solve puzzles to stop the train
+DO NOT give the player answer options, let the player create their own
+Player CANNOT skip puzzles
+You CANNOT give hints without the player beating you at Tic-Tac-Toe
+Player cannot interact with anything but the puzzles to stop the train
+Player cannot leave the train until all puzzles are complete
+DO NOT GIVE THE PLAYER THE ANSWER
+
+Now start by giving the player the opening scenario.`;
+
+// Modal functions
+function openModal(src, caption) {
+  const img = document.getElementById('modalImage');
+  const text = document.getElementById('modalText');
+  const captionDiv = document.getElementById('modalCaption');
+
+  img.src = src;
+  img.style.display = 'block';
+  text.style.display = 'none';
+  captionDiv.innerText = caption;
+  captionDiv.style.display = 'block';
+  document.getElementById('myModal').style.display = 'flex';
+}
+
+function openPrompt(title, content) {
+  const img = document.getElementById('modalImage');
+  const text = document.getElementById('modalText');
+  const captionDiv = document.getElementById('modalCaption');
+
+  img.style.display = 'none';
+  captionDiv.style.display = 'none';
+  text.style.display = 'block';
+  text.innerText = title + '\n\n' + content;
+  document.getElementById('myModal').style.display = 'flex';
+}
+
+function openCodeModal(title, code) {
+  const img = document.getElementById('modalImage');
+  const text = document.getElementById('modalText');
+  const captionDiv = document.getElementById('modalCaption');
+
+  img.style.display = 'none';
+  captionDiv.style.display = 'none';
+  text.style.display = 'block';
+  text.innerText = title + '\n\n' + code;
+  document.getElementById('myModal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('myModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('myModal');
+  if(event.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+</script>
+
+</body>
+</html>
